@@ -30,8 +30,3 @@ module "resource_group_storage" {
 output "sa_name" {
   value = module.resource_group_storage.storage_account_name
 }
-
-
-output "sa_name" {
-  value = module.rg_sa.storage_account_name
-}
