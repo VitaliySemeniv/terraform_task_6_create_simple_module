@@ -17,18 +17,20 @@ provider "azurerm" {
 variable "subscription_id" { type = string }
 variable "tenant_id" { type = string }
 
-module "rg_sa" {
-  source  = "VitaliySemeniv/resource-group-storage/azurerm" # ✅ модуль із Terraform Registry
+module "resource_group_storage" {
+  source  = "VitaliySemeniv/resource-group-storage/azurerm"
   version = "1.0.0"
 
   resource_group_name  = "rg-module-demo"
   location             = "westeurope"
   storage_account_name = "vitmodulersa123"
-  tags = {
-    owner = "vitaliy"
-    env   = "lab"
-  }
+  tags                 = { owner = "vitaliy", env = "lab" }
 }
+
+output "sa_name" {
+  value = module.resource_group_storage.storage_account_name
+}
+
 
 output "sa_name" {
   value = module.rg_sa.storage_account_name
